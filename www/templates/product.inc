@@ -59,7 +59,7 @@
 			<p class="p"><?= $product_short_desc ?></p>
 			<?= $product_full_desc ?>
 <?
-		if ( !$product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
+		if ( $product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
 		{
 ?>
             <p class="p"><a href="<?= $product_instructions.$product_instruct ?>"><b>Скачать инструкцию</b></a></p>
