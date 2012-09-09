@@ -13,6 +13,7 @@
 		$product_instruct = $products_row['product_instruct'];
 		$product_picture_big = $products_row['product_picture_big'];
 		$product_no_discount = $products_row['product_no_discount'];
+		$product_addon = $products_row['product_addon'];
 		
 		if ( !$product_no_discount && $product_price > $discount_limit )
 			$product_price *= $discount_value;
@@ -58,11 +59,29 @@
 			<p class="p"><?= $product_short_desc ?></p>
 			<?= $product_full_desc ?>
 <?
-		if ( $product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
+		if ( !$product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
 		{
 ?>
-            <p class="p"><a href="<?= $product_instructions.$product_instruct ?>">Инструкция</a></p>
+            <p class="p"><a href="<?= $product_instructions.$product_instruct ?>"><b>Скачать инструкцию</b></a></p>
 <?
+		}
+		
+		if ( $product_addon ) 
+		{
+?>
+			<br/>
+			<p class="p" style="color: #c70711"><b>Опции к тренажерам</b></p>
+<?
+			$addon_sql = mysql_query("select product_id, product_name from products where product_id in ( $product_addon )");
+			
+			while ( $addon_row = mysql_fetch_array($addon_sql) )
+			{
+				$product_id = $addon_row['product_id'];
+				$product_name = $addon_row['product_name'];
+?>
+			<p class="p"><a href="?tab=product&amp;product_id=<?= $product_id ?>"><?= $product_name ?></a></p>
+<?
+			}
 		}
 ?>
 		</td>
