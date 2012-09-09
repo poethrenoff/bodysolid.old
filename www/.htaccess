@@ -1,0 +1,8 @@
+<Files *.inc>
+  Order allow,deny
+  Deny from all
+</Files>
+
+ErrorDocument 404 http://bodysolid.ru/
+
+DirectoryIndex index.php
