@@ -5,7 +5,7 @@
 	
 	$course = get_preference('course', 28.00);
 	$discount_limit = get_preference('discount_limit', 1000.00);
-	$discount_value = get_preference('discount_value', 1);
+	$discount_value = get_preference('discount_value', 0.9);
 
 	switch ( $tab )
 	{
