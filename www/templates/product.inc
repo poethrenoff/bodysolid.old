@@ -9,6 +9,7 @@
 		$product_price = $products_row['product_price'];
 		$product_short_desc = $products_row['product_short_desc'];
 		$product_full_desc = $products_row['product_full_desc'];
+		$product_video = $products_row['product_video'];
 		$product_picture = $products_row['product_picture'];
 		$product_instruct = $products_row['product_instruct'];
 		$product_picture_big = $products_row['product_picture_big'];
@@ -59,6 +60,13 @@
 			<p class="p"><?= $product_short_desc ?></p>
 			<?= $product_full_desc ?>
 <?
+		if ( $product_video ) 
+		{
+?>
+            <p class="c"><?= $product_video ?></p>
+<?
+		}
+
 		if ( $product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
 		{
 ?>

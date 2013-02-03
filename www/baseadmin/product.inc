@@ -83,6 +83,7 @@
 
                 $new_short_desc = init_string('new_short_desc',''); $new_short_desc = norm_string($new_short_desc);
                 $new_full_desc = init_string('new_full_desc',''); $new_full_desc = norm_html($new_full_desc);
+                $new_video = init_string('new_video',''); $new_video = norm_html($new_video);
                 $new_search = norm_search($new_name).' '.norm_search($new_short_desc).' '.norm_search($new_full_desc);
 
                 if ( $new_name ) 
@@ -95,6 +96,7 @@
 	          	                                       product_price = '$new_price',
 	                                                   product_short_desc = '$new_short_desc',
 	                                                   product_full_desc = '$new_full_desc',
+	                                                   product_video = '$new_video',
 	                      							   product_search = '$new_search',	
 	                                                   product_addon = '$new_addon'
     	                           where product_id = '$id'");
@@ -102,9 +104,9 @@
 	              else
     	          {
 	                  mysql_query("insert into products (product_name, category_id, brand_id, product_price, product_picture, product_picture_big,
-	                  	  								 product_short_desc, product_full_desc, product_search, product_addon)
+	                  	  								 product_short_desc, product_full_desc, product_video, product_search, product_addon)
 	                                             values ('$new_name', '$new_category', '$new_brand', '$new_price', '', '',
-	                  									 '$new_short_desc', '$new_full_desc', '$new_search', '$new_addon')");
+	                  									 '$new_short_desc', '$new_full_desc', '$new_video', '$new_search', '$new_addon')");
     	              $id = mysql_insert_id();
 
                       $action = 'edit';
@@ -180,6 +182,7 @@
 	            $product_price = (float) $product['product_price'];
 	            $product_short_desc = $product['product_short_desc'];
 	            $product_full_desc = htmlspecialchars( $product['product_full_desc'] );
+	            $product_video = htmlspecialchars( $product['product_video'] );
 	            $product_picture = $product['product_picture'];
 	            $product_picture_big = $product['product_picture_big'];
 	            $product_instruct = $product['product_instruct'];
@@ -188,7 +191,7 @@
 	        else
 	        {
 	            $product_id = $brand_id = $category_id = $product_price = 0;
-	            $product_name = $product_short_desc = $product_full_desc = $product_picture = $product_picture_big = $product_instruct = $product_addon = '';
+	            $product_name = $product_short_desc = $product_full_desc = $product_video = $product_picture = $product_picture_big = $product_instruct = $product_addon = '';
 	        }
 	        
             $category_select_str = $category_insert_select_str = '';
@@ -357,6 +360,14 @@
           </td>
           <td valign="top" colspan="2">
             <textarea name="new_full_desc" cols="50" rows="5" class="format" style="width: 500px"><?= $product_full_desc ?></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <p>Видео</p>
+          </td>
+          <td valign="top" colspan="2">
+            <input type="text" class="text" name="new_video" style="width: 500px" value="<?= $product_video ?>"/>
           </td>
         </tr>
         <tr>
@@ -541,7 +552,14 @@
     }
     
     $di = ImageCreateTrueColor($nwidth, $nheight);  
-
+	
+	if ( $type == 1 ) {
+		imagecolortransparent($di, imagecolorat($di, 0, 0));
+	}
+	if ( $type == 3 ) {
+		imagesavealpha($di, true); imagealphablending($di, false);
+	}
+	
     ImageCopyResampled($di,$si,0,0,0,0,$nwidth,$nheight,$width,$height);
     
     switch ( $type )
