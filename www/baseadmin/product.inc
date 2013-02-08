@@ -151,7 +151,7 @@
                         chmod($tpath.$tfile, 0644);
                         ResizeProductImage($tpath.$tfile, $tnpath.$tfile, 400, 400);
                         chmod($tnpath.$tfile, 0666);
-                        ResizeProductImage($tpath.$tfile, $tprpath.$tfile, 120, 140);
+                        ResizeProductImage($tpath.$tfile, $tprpath.$tfile, 140, 140);
                         chmod($tprpath.$tfile, 0666);
                         
                         mysql_query("update products set product_picture_big = '$tfile',  product_picture = '$tfile' where product_id = '$id'");
@@ -535,7 +535,7 @@
     </form>
 <?
   
-  function ResizeProductImage($original_picture, $preview_picture, $maxwidth = 120, $maxheight = 140)
+  function ResizeProductImage($original_picture, $preview_picture, $maxwidth = 140, $maxheight = 140)
   {
     list($width, $height, $type, $attr) = GetImageSize($original_picture);
     
