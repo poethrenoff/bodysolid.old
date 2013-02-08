@@ -64,7 +64,7 @@
               {
 				ResizeProductImage($tpath.$tfile, $tpath.$tfile, 1000, 1000);
                 chmod($tpath.$tfile, 0644);
-				ResizeProductImage($tpath.$tfile, $tnpath.$tfile, 200, 300);
+				ResizeProductImage($tpath.$tfile, $tnpath.$tfile, 200, 200);
 				chmod($tnpath.$tfile, 0666);
 				
                 mysql_query("update product_pictures set picture_name_big = '$tfile', picture_name = '$tfile'
@@ -157,6 +157,7 @@
 <?		if ( $picture_name_big ) { ?>
 			<br/><a href="<?= $product_additional_big_images.$picture_name_big ?>">Фотография</a>
 <?		} ?>
+			<a href="index.php?id=<?= $product_id ?>&pid=<?= $picture_id ?>&action=delete&tab=picture&group=<?= $group ?>&category=<?= $category ?>"><img src="../images/admin/buttonhide.gif" align="absbottom"/></a>
           </td>
         </tr>
         <tr height="10">
@@ -175,9 +176,13 @@
 <?      
     }
   
-  function ResizeProductImage($original_picture, $preview_picture, $maxwidth = 120, $maxheight = 140)
+  function ResizeProductImage($original_picture, $preview_picture, $maxwidth = 140, $maxheight = 140)
   {
     list($width, $height, $type, $attr) = GetImageSize($original_picture);
+	
+	if ($width < $maxwidth && $height < $maxheight) {
+		copy($original_picture, $preview_picture); return;
+	}
     
     if ( $height > $width ) {
       $nheight = $maxheight; $nwidth = round( $width * $maxheight / $height ); }
@@ -192,7 +197,14 @@
     }
     
     $di = ImageCreateTrueColor($nwidth, $nheight);  
-
+	
+	if ( $type == 1 ) {
+		imagecolortransparent($di, imagecolorat($di, 0, 0));
+	}
+	if ( $type == 3 ) {
+		imagesavealpha($di, true); imagealphablending($di, false);
+	}
+	
     ImageCopyResampled($di,$si,0,0,0,0,$nwidth,$nheight,$width,$height);
     
     switch ( $type )
