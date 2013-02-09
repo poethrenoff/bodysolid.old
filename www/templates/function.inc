@@ -6,7 +6,7 @@
 		global $product_preview_images, $product_preview_picture_default, $course, $discount_limit, $discount_value;
 ?>
 
-<table cellpadding="2" cellspacing="0" style="width: 100%">
+<table cellpadding="3" cellspacing="0" style="width: 100%">
 <?
 	    for ( $i = 0; $i < $products_cnt; $i += $max_product_col )
 		{
@@ -16,20 +16,20 @@
 			for ( $j = 0; $j < $max_product_col; $j++ )
 			{
 ?>
-		<td style="width: <?= round(100/$max_product_col) ?>%">
+		<td style="width: <?= round(100/$max_product_col) ?>%; text-align: center; padding-top: 10px;">
 <?
 				if ( $i + $j < $products_cnt )
 				{
 					$product_id = $products_rows[$i + $j]['product_id'];
 					$product_name = $products_rows[$i + $j]['product_name'];
 ?>
-			<p class="c"><a href="?tab=product&amp;product_id=<?= $product_id ?>"><?= $product_name ?></a></p>
+			<a href="?tab=product&amp;product_id=<?= $product_id ?>"><?= $product_name ?></a>
 <?
 				}
 				else
 				{
 ?>
-			<p>&nbsp;</p>
+			&nbsp;
 <?
    				}
 ?>
@@ -61,7 +61,7 @@
 				else
 				{
 ?>
-			<p>&nbsp;</p>
+			&nbsp;
 <?
    				}
 ?>
@@ -89,16 +89,16 @@
 ?>
 			<table cellpadding="2" cellspacing="0" style="width: 100%">
 				<tr>
-					<td style="width: 50%">
-						<p class="c"><b><?= round($product_price * $course) ?> р.</b></p>
+					<td style="width: 50%; text-align: center">
+						<b><?= round($product_price * $course) ?> р.</b>
 					</td>
 					<td style="width: 50%" align="right">
 						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 35px"><img src="images/basket.gif" alt="Купить" title="Купить"/></a>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<p class="c"><?= $product_short_desc ?></p>
+					<td colspan="2" style="text-align: center">
+						<?= $product_short_desc ?>
 					</td>
 				</tr>
 			</table>
@@ -108,7 +108,7 @@
 				else
 				{
 ?>
-			<p>&nbsp;</p>
+			&nbsp;
 <?
    				}
 ?>
@@ -151,35 +151,35 @@
 <?
 		}
 ?>
-	<table cellpadding="3" cellspacing="0" style="width: 100%; border-collapse: collapse">
-		<tr valign="middle" style="height: 20px">
-			<td style="width: 15px; border: 1px solid #bbbbbb">
-				<p class="c">№</p>
+	<table cellpadding="2" cellspacing="0" class="cart">
+		<tr class="header">
+			<td style="width: 5%">
+				№
 			</td>
-			<td style="border: 1px solid #bbbbbb">
-				<p class="c">Товар</p>
+			<td style="width: 45%">
+				Товар
 			</td>
-			<td style="width: 60px; border: 1px solid #bbbbbb">
-				<p class="c">Цена</p>
+			<td style="width: 10%">
+				Цена
 			</td>
-			<td style="width: 60px; border: 1px solid #bbbbbb">
-				<p class="c">Кол-во</p>
+			<td style="width: 10%">
+				Кол-во
 			</td>
-			<td style="width: 60px; border: 1px solid #bbbbbb">
-				<p class="c">Стоимость</p>
+			<td style="width: 10%">
+				Стоимость
 			</td>
-			<td style="width: 60px<? if ( $edit ) print "; border: 1px solid #bbbbbb" ?>">
+			<td style="width: 10%">
 <?		if ( $edit ) { ?>
-				<p class="c">Изменить</p>
+				Изменить
 <?		} else { ?>
-				<p>&nbsp;</p>
+				&nbsp;
 <?		} ?>
 			</td>
-			<td style="width: 60px<? if ( $edit ) print "; border: 1px solid #bbbbbb" ?>">
+			<td style="width: 10%">
 <?		if ( $edit ) { ?>
-				<p class="c">Удалить</p>
+				Удалить
 <?		} else { ?>
-				<p>&nbsp;</p>
+				&nbsp;
 <?		} ?>
 			</td>
 		</tr>
@@ -189,96 +189,84 @@
 	{
 		$cost = $product_item['product_price']*$product_item['product_count']; $sum += $cost;
 ?>
-		<tr valign="middle" style="height: 30px">
-			<td style="border: 1px solid #bbbbbb">
-				<p class="r"><?= $cnt++ ?>.</p>
+		<tr>
+			<td style="text-align: center">
+				<?= $cnt++ ?>.
 			</td>
-			<td style="border: 1px solid #bbbbbb">
-				<p><?= $product_item['product_name'] ?></p>
+			<td>
+				<?= $product_item['product_name'] ?>
 			</td>
-			<td style="border: 1px solid #bbbbbb">
-				<p class="r"><?= $product_item['product_price'] ?></p>
+			<td style="text-align: right">
+				<?= $product_item['product_price'] ?>
 			</td>
-			<td style="border: 1px solid #bbbbbb">
+			<td style="text-align: right">
 <?		if ( $edit ) { ?>
-				<input id="bci<?= $product_id ?>" name="products[<?= $product_id ?>]" type="text" value="<?= $product_item['product_count'] ?>" class="basket" readonly="readonly"/>
+				<input id="bci<?= $product_id ?>" name="products[<?= $product_id ?>]" type="text" value="<?= $product_item['product_count'] ?>" readonly="readonly" class="quantity"/>
 <?		} else { ?>
-				<p class="r"><?= $product_item['product_count'] ?></p>
+				<?= $product_item['product_count'] ?>
 <?		} ?>
 			</td>
-			<td style="border: 1px solid #bbbbbb">
-				<p class="r"><?= $cost ?></p>
+			<td style="text-align: right">
+				<?= $cost ?>
 			</td>
-			<td<? if ( $edit ) print " style=\"border: 1px solid #bbbbbb\"" ?>>
+			<td style="text-align: center">
 <?		if ( $edit ) { ?>
-				<p class="c"><a href="" onclick="fnInc('<?= $product_id ?>'); return false"><img src="images/plus.gif" alt="Увеличить" title="Увеличить"/></a> / <a href="" onclick="fnDec('<?= $product_id ?>'); return false"><img src="images/minus.gif" alt="Уменьшить" title="Уменьшить"/></a></p>
+				<a href="" onclick="fnInc('<?= $product_id ?>'); return false"><img src="images/plus.gif" alt="Увеличить" title="Увеличить"/></a> <a href="" onclick="fnDec('<?= $product_id ?>'); return false"><img src="images/minus.gif" alt="Уменьшить" title="Уменьшить"/></a>
 <?		} else { ?>
-				<p>&nbsp;</p>
+				&nbsp;
 <?		} ?>
 			</td>
-			<td<? if ( $edit ) print " style=\"border: 1px solid #bbbbbb\"" ?>>
+			<td style="text-align: center">
 <?		if ( $edit ) { ?>
-				<p class="c"><a href="?action=delete&amp;product_id=<?= $product_id ?>"><img src="images/delete.gif" alt="Удалить" title="Удалить"/></a></p>
+				<a href="?action=delete&amp;product_id=<?= $product_id ?>"><img src="images/delete.gif" alt="Удалить" title="Удалить"/></a>
 <?		} else { ?>
-				<p>&nbsp;</p>
+				&nbsp;
 <?		} ?>
 			</td>
 		</tr>
 <?
 	}
 ?>
-		<tr valign="middle" style="height: 30px">
-			<td colspan="3">
-				<p class="r"><b>Общая сумма заказа:</b></p>
+		<tr>
+			<td colspan="3" style="text-align: right">
+				<b>Общая сумма заказа:</b>
 			</td>
-			<td colspan="2">
-				<p class="r"><b><?= $sum ?> р.</b></p>
+			<td colspan="2" style="text-align: right">
+				<b><?= $sum ?> р.</b>
 			</td>
 			<td colspan="2"/>
-		</tr>		
-		<tr valign="middle" style="height: 30px">
+		</tr>
+		<tr>
 <?
 		if ( $edit )
 		{
 ?>
-			<td colspan="3">
-				<table cellpadding="0" cellspacing="0" style="width: 100%">
-					<tr>
-						<td style="width: 33%" align="left">
+			<td colspan="7" align="center">
 <?
 			if ( $sum < $order_limit )
 			{
 ?>
-							<input type="button" value="Оформить" onclick="alert('Розничные заказы интернет-магазина обрабатываются при стоимости не менее <?= $order_limit ?> рублей. Если вы хотите заказать товар на меньшую сумму, пожалуйста, обратитесь в один из наших магазинов-партнеров.')" class="button"/>
+				<input type="button" value="Оформить" onclick="alert('Розничные заказы интернет-магазина обрабатываются при стоимости не менее <?= $order_limit ?> рублей. Если вы хотите заказать товар на меньшую сумму, пожалуйста, обратитесь в один из наших магазинов-партнеров.')" class="button"/>
 <?
 			}
 			else
 			{
 ?>
-							<input type="button" value="Оформить" onclick="document.forms['basket'].action.value = 'order'; document.forms['basket'].submit()" class="button"/>
+				<input type="button" value="Оформить" onclick="document.forms['basket'].action.value = 'order'; document.forms['basket'].submit()" class="button"/>
 <?
 			}
 ?>			
-						</td>
-						<td style="width: 33%" align="center">
-							<input type="button" value="Очистить" onclick="if ( confirm('Вы уверены, что хотите очистить корзину?') ) { document.forms['basket'].action.value = 'clear'; document.forms['basket'].submit() }" class="button"/>
-						</td>
-						<td style="width: 34%" align="right">
-							<input type="button" value="Пересчитать" onclick="document.forms['basket'].action.value = 'set'; document.forms['basket'].submit()" class="button"/>
-						</td>
-					</tr>
-				</table>
+				<input type="button" value="Очистить" onclick="if ( confirm('Вы уверены, что хотите очистить корзину?') ) { document.forms['basket'].action.value = 'clear'; document.forms['basket'].submit() }" class="button"/>
+				<input type="button" value="Пересчитать" onclick="document.forms['basket'].action.value = 'set'; document.forms['basket'].submit()" class="button"/>
 			</td>
-			<td colspan="4"/>
 <?
 		}
 		else
 		{
 ?>
-			<td colspan="3" align="left">
+			<td colspan="7">
 				<input type="button" value="Вернуться" onclick="window.location = 'basket.php<? if ( $action === 'preview' ) print "?action=order" ?>'" class="button"/>
 			</td>
-			<td colspan="4"/>
 <?
 		}
 ?>

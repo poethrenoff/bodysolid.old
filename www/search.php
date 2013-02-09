@@ -7,7 +7,7 @@
 	$search_rows = array();
 
 	// Контекстный поиск
-	$search_text = init_string('search_text', '');	
+	$search_text = init_string('search_text', '');
 
 	$restore_search_text = htmlspecialchars( norm_text($search_text) );
 	$search_text = norm_html( $search_text );
@@ -69,11 +69,11 @@
 			$search_page = $search_rows[$i]['page'];
 ?>
 	<tr>
-		<td style="width: 20px">
-			<p class="r"><?= $i+1 ?>.</p> 
+		<td style="width: 20px; text-align: right">
+			<?= $i+1 ?>.
 		</td>
 		<td>
-			<p><a href="<?= $search_link ?>"><?= $search_name ?></a> (<?= $search_page ?>)</p> 
+			<a href="<?= $search_link ?>"><?= $search_name ?></a> (<?= $search_page ?>)
 		</td>
 	</tr>
 <?

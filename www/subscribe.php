@@ -130,7 +130,7 @@
 		</tr>
 		<tr valign="top" style="height: 30px">
 			<td align="left">
-				<input type="button" class="button" value="Подписаться" style="width: 120px"
+				<input type="button" class="button" value="Подписаться"
 					   onclick="if (document.forms['subscribe'].subscribe_name.value != '' &amp;&amp; 
 					   	   			document.forms['subscribe'].subscribe_email.value != '') 
 					   	   		{

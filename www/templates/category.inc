@@ -22,8 +22,6 @@
 
 <h1><?= $category_name ?></h1>
 
-<?= $category_comment ?>
-
 <?
 		switch ( $product_order )
 		{
@@ -33,11 +31,11 @@
 		}
 ?>
 
-<form method="get" id="sort" action="<?= $_SERVER['PHP_SELF'] ?>">
+<form method="get" id="sort" action="<?= $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px">
 	<table cellpadding="2" cellspacing="0" style="width: 100%">
 		<tr>
-			<td valign="top">
-				<p class="r" style="margin-top: 4px">Сортировать по</p>
+			<td valign="top" style="padding-top: 6px; text-align: right">
+				Сортировать по
 			</td>
 			<td style="width: 100px">
 				<input type="hidden" name="tab" value="category"/>

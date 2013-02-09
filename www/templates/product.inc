@@ -37,14 +37,18 @@
 
 <h1><?= $product_name ?></h1>
 
+<script type="text/javascript">
+	function toggle_desc(id) {
+		if ($('#' + id).css('display') != 'block') {
+			$('.desc').hide(400);
+			$('#' + id).show(400);
+		}
+	}
+</script>
 <table cellpadding="2" cellspacing="0" style="width: 100%">
 	<tr valign="top">
-		<td style="width: 20%">
-<?		if ( $product_picture_big ) { ?>
-			<a href="picture.php?product_id=<?= $product_id ?>"><img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>" style="float: left; margin: 5px 15px 10px 5px"/></a>
-<?		} else { ?>
-			<img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>" style="float: left; margin: 5px 15px 10px 5px"/>
-<?		} ?>
+		<td style="width: 160px; text-align: center">
+			<img src="<?= $product_preview_images.$product_picture ?>" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 10px">
 				<tr valign="middle">
 					<td style="width: 80%">
@@ -55,29 +59,34 @@
 					</td>
 				</tr>
 			</table>
-		</td>
-		<td style="width: 80%">
-			<p class="p"><?= $product_short_desc ?></p>
-			<?= $product_full_desc ?>
+			<br/><br/>
+			<a href="" onclick="toggle_desc('desc'); return false;">ОПИСАНИЕ</a>
+			<br/><br/>
+			<a href="" onclick="toggle_desc('image'); return false;">ИЗОБРАЖЕНИЯ</a>
 <?
 		if ( $product_video ) 
 		{
 ?>
-            <p class="c"><?= $product_video ?></p>
+			<br/><br/>
+			<a href="" onclick="toggle_desc('video'); return false;">ВИДЕО</a>
 <?
 		}
-
+?>
+		</td>
+		<td>
+			<div id="desc" class="desc" style="display: block">
+				<p class="p"><?= $product_short_desc ?></p><?= $product_full_desc ?>
+<?
 		if ( $product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
 		{
 ?>
-            <p class="p"><a href="<?= $product_instructions.$product_instruct ?>"><b>Скачать инструкцию</b></a></p>
+			<p class="p"><b><a href="<?= $product_instructions.$product_instruct ?>">Скачать инструкцию</a></b></p>
 <?
 		}
 		
 		if ( $product_addon ) 
 		{
 ?>
-			<br/>
 			<p class="p" style="color: #c70711"><b>Опции к тренажерам</b></p>
 <?
 			$addon_sql = mysql_query("select product_id, product_name from products where product_id in ( $product_addon )");
@@ -92,21 +101,21 @@
 			}
 		}
 ?>
-		</td>
-	</tr>
-</table>
+			</div>
+			<div id="image" class="desc" style="display: none; text-align: center">
+<?		if ( $product_picture_big ) { ?>
+				<a href="picture.php?product_id=<?= $product_id ?>"><img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/></a>
+<?		} else { ?>
+				<img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
+<?		} ?>
+				<br/><br/>
 <?
 		$pictures_sql = mysql_query("select * from product_pictures where product_id = '$product_id'");
-	   
+		
 		$pictures_cnt = mysql_num_rows($pictures_sql);
 		
 		if ( $pictures_cnt )
 		{
-?>
-
-<div class="separator"></div>
-
-<?
 			while ( $pictures_row = mysql_fetch_array($pictures_sql) )
 			{
 				$picture_id = $pictures_row['picture_id'];
@@ -128,8 +137,23 @@
 		</div>
 <?
 			}
+		}
 ?>
+				<div class="clear"></div>
+			</div>
+<?
+		if ( $product_video ) 
+		{
+?>
+			<div id="video" class="desc" style="display: none; text-align: center">
+				<?= $product_video ?>
+			</div>
 <?
 		}
+?>
+		</td>
+	</tr>
+</table>
+<?
 	}
 ?>

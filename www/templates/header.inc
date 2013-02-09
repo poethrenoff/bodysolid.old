@@ -1,102 +1,98 @@
-<?
-	Header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-	Header("Cache-Control: no-cache, must-revalidate");
-	Header("Pragma: no-cache");
-	Header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
-	
-	print '<?xml version="1.0" encoding="windows-1251"?>'."\n";
-	print '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
-?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title><?= $title ?></title>
-		<meta name="keywords" content="<?= $keywords ?>"/>
-	   	<meta name="description" content="<?= $description ?>"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
-		<link rel="stylesheet" href="styles/index.css" type="text/css"/>
-		<link rel="shortcut icon" href="favicon.ico">
+		<meta name="title" content="<?= $title ?>">
+		<meta name="keywords" content="<?= $keywords ?>">
+		<meta name="description" content="<?= $description ?>">
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/styles/index.css" type="text/css"/>
+		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 	</head>
 	<body>
-		<table cellpadding="0" cellspacing="0" style="width: 100%">
-			<tr align="center">
-				<td>
-					<table cellpadding="0" cellspacing="0" style="width: 980px">
-						<tr>
-							<td colspan="2" style="width: 980px; height: 415px; background-image: url(/images/design/design_r1_c1.jpg)" align="left" valign="top">
-								<div style="position: relative; top: 0px; left: 450px; width: 530px">
-									<table cellpadding="0" cellspacing="0" style="width: 100%">
-										<tr>
-											<td style="width: 260px" align="left" valign="top">
-												<p class="main_menu" style="margin-top: 100px"><a href="index.php">Силовые тренажеры<br/>BodySolid</a></p>
-												<p class="main_menu" style="margin-top: 15px"><a href="articles.php">Особенности</a></p>
-												<p class="main_menu" style="margin-top: 15px"><a href="about.php">Где купить</a></p>
-												<table cellpadding="0" cellspacing="0" style="width: 100%; height: 25px; margin-top: 155px">
-													<tr>
-														<td style="width: 20px" align="center" valign="middle">
-															<img src="/images/design/search.gif"/>
-														</td>
-														<td align="center" valign="top">
-															<form method="post" id="search" action="search.php" onsubmit="return forms['search'].search_text.value.length > 0">
-																<input type="text" class="text" name="search_text" value="Введите слова для поиска" onclick="this.value = ''" style="width: 95%"/>
-															</form>
-														</td>
-													</tr>
-												</table>
-											</td>
-											<td align="left" valign="top">
-												<div style="position: relative; top: 25px; left: 50px; width: 190px">
-													<p class="contacts">Наши телефоны:</p>
-													<p class="contacts_phone" style="margin-top: -5px">(495) 518-52-97<br/>(495) 518-14-19</p>
-													<p class="contacts" style="margin-left: 80px;"><br/><a href="basket.php">Ваша корзина</a></p>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 280px" align="left" valign="top">
+		<div class="<?= $_SERVER['SCRIPT_NAME'] == '/index.php' ? 'index' : 'default' ?>">
+			<div class="top">
+				<a href="/" class="index"></a>
+				<a href="/articles.php" class="articles"></a>
+				<a href="/about.php" class="about"></a>
+				<div class="phone">
+					(495) 518-52-97; (495) 518-14-19
+				</div>
+				<div class="card">
+					<a href="/basket.php">корзина</a> (<?= @array_sum($_SESSION['_products']) ?> шт.)
+				</div>
+				<div class="search">
+					<form action="/search.php" method="post">
+						<input type="text" class="text" name="search_text" value=""/>
+						<input type="submit" class="button" value=""/>
+					</form>
+				</div>
+			</div>
+			<div class="inner">
+				<div class="catalogue">
+					<div class="catalogue_top"></div>
+					<div class="catalogue_center">
+						<script type="text/javascript">
+							function toggle_menu(item) {
+								if ($(item).hasClass('selected')) {
+									$(item).removeClass('selected');
+									$(item).next().hide(400);
+								} else {
+									$(item).siblings().removeClass('selected');
+									$(item).parent().find('div').hide(400);
+									$(item).addClass('selected');
+									$(item).next().show(400);
+								}
+							}
+						</script>
 <?
+	$product_id = $category_id = $group_id = 0;
+	if ($_SERVER['SCRIPT_NAME'] == '/products.php') {
+		$tab = init_string('tab', 'group');
+		switch ( $tab ) {
+			case 'product':
+				$product_id = init_integer('product_id', 0);
+				list($category_id) = mysql_fetch_row(mysql_query("select category_id from products where product_id = '$product_id'"));
+				list($group_id) = mysql_fetch_row(mysql_query("select group_id from categories where category_id = '$category_id'"));
+				break;
+			case 'category':
+				$category_id = init_integer('category_id', 0);
+				list($group_id) = mysql_fetch_row(mysql_query("select group_id from categories where category_id = '$category_id'"));
+				break;
+			case 'group':
+				$group_id = init_integer('group_id', 0);
+		}
+	}
+	
 	$menu_rows = array();
-
+	
 	$groups_sql = mysql_query("select * from groups where group_active = '1' order by group_order");
-	while ( $groups_row = mysql_fetch_array($groups_sql) )
-	{
+	while ( $groups_row = mysql_fetch_array($groups_sql) ) {
 		$menu_rows[ $groups_row['group_id'] ] = array( 'group_name' => $groups_row['group_name'], 'group_categories' => array() );
-		
 		$categories_sql = mysql_query("select * from categories where group_id = '".$groups_row['group_id']."' and category_active = '1' order by category_order");
-		while ( $categories_row = mysql_fetch_array($categories_sql) )
-		{
+		while ( $categories_row = mysql_fetch_array($categories_sql) ) {
 			$menu_rows[$groups_row['group_id']]['group_categories'][$categories_row['category_id']] = array( 'category_name' => $categories_row['category_short_name'] );
 		}
 	}
+	foreach ( $menu_rows as $group_index => $group_value ) {
 ?>
-											<table cellpadding="1" cellspacing="0" style="width: 190px; margin: 0px 20px 0px 12px">
+						<a href="" onclick="toggle_menu(this); return false;"<? if ($group_index == $group_id) { ?> class="selected"<? } ?>><?= $menu_rows[$group_index]['group_name'] ?></a>
+						<div<? if ($group_index != $group_id) { ?> style="display: none"<? } ?>>
 <?
-	foreach ( $menu_rows as $group_index => $group_value )
-	{
-		$group_name = $menu_rows[$group_index]['group_name'];
+		foreach ( $menu_rows[$group_index]['group_categories'] as $category_index => $category_value ) {
 ?>
-												<tr>
-													<td>
-														<p class="menu_group"><b><a href="products.php?tab=group&amp;group_id=<?= $group_index ?>"><?= $group_name ?></a></b></p>
-													</td>
-												</tr>
-<?
-		foreach ( $menu_rows[$group_index]['group_categories'] as $category_index => $category_value )
-		{
-			$category_name = $menu_rows[$group_index]['group_categories'][$category_index]['category_name'];
-?>
-												<tr>
-													<td>
-														<p class="menu_category"> - <a href="products.php?tab=category&amp;category_id=<?= $category_index ?>"><?= $category_name ?></a></p>
-													</td>
-												</tr>
+							<a href="products.php?tab=category&amp;category_id=<?= $category_index ?>" class="submenu<? if ($category_index == $category_id) { ?> selected<? } ?>"><?= $menu_rows[$group_index]['group_categories'][$category_index]['category_name'] ?></a>
 <?
 		}
+?>
+						</div>
+<?
 	}
 ?>
-											</table>
-							</td>
-							<td style="width: 700px; padding-top: 30px;  padding-bottom: 10px; background-image: url(/images/design/design_r2_c2.jpg); background-position: right top; background-repeat: no-repeat" valign="top">
+					</div>
+					<div class="catalogue_bottom"></div>
+				</div>
+				<div class="content">
+					<div class="content_top"></div>
+					<div class="content_center">

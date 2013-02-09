@@ -1,24 +1,26 @@
+<p class="c"><a href="http://bodysolid.ru/products.php?tab=group&group_id=5"><img src="/images/design/zhelezo_banner.gif" class="product"></a></p>
+
 <h1>Силовое оборудование от BodySolid.RU - только проверенное качество!</h1>
 <img src="images/people.gif" height="190" class="product" alt="БодиСолид - Ваш успех!" title="БодиСолид - Ваш успех!" style="float: right; margin: 5px 0px 0px 10px"/>
 
-<p class="p">ООО "Фитнесспорт" предлагает <a href="products.php?tab=group&group_id=6">тренажеры BodySolid</a> <b>по лучшим ценам</b>. Специальные <a href="http://wnqsport.ru/dealers.php">скидки оптовым покупателям</a> и помощь в <a href="products.php?tab=group&group_id=1">оборудовании фитнес-центров</a> лучшими <a href="products.php?tab=category&category_id=30">профессиональными тренажерами</a>, опытные менеджеры-консультанты и <b>оптимальные сроки поставок</b> - все это к услугам наших клиентов! Звоните нам по телефонам в Москве - (495) 518-14-19, (495) 518-52-97 и в Киеве - (044) 384-06-64, (068) 199-18-85, (096) 444-23-64. Заказ он-лайн для жителей Украины - на сайте <a href="http://fitnessport.com.ua/">Fitnessport.com.ua/</a></p>
+<p class="p">ООО "Фитнесспорт" предлагает <a href="products.php?tab=group&group_id=6">тренажеры BodySolid</a> <b>по лучшим ценам</b>. Специальные <a href="http://wnqsport.ru/dealers.php">скидки оптовым покупателям</a> и помощь в <a href="products.php?tab=group&group_id=1">оборудовании фитнес-центров</a> лучшими <a href="products.php?tab=category&category_id=30">профессиональными тренажерами</a>, опытные менеджеры-консультанты и <b>оптимальные сроки поставок</b> - все это к услугам наших клиентов! Звоните нам по телефонам в Москве <b>(495) 518-14-19, (495) 518-52-97</b>.</p>
 
 <p class="p">ООО "Фитнесспорт" реализует <b><u>"железо"</u></b> оптом и в розницу. Всегда в наличие <b>диски, грифы, гантели</b> и другие утяжелители. Мы поможем подобрать оптимальный комплект "железа" как для индивидуальных тренировок, так и для залов. Подробнее наш ассортимент перечислен к <a href="/products.php?tab=category&category_id=52">каталоге</a>.</p>
 
 <p class="p">У нас - <b>скидки <u>от 10%</u></b> на все <a href="products.php?tab=group&group_id=10">профессиональное спортивное оборудование</a></p>
-<br />
+
 <h2>Рекомендуем для ваших тренировок:</h2>
 
 <table cellpadding="2" cellspacing="0"  style="width: 100%; margin-top: 10px">
 	<tr align="center" valign="top">
 		<td style="width: 33%">
-			<p class="c"><a href="products.php?tab=product&product_id=1283">Гантельный ряд от 2.5 до 25 кг</a></p>
-		</td>
-		<td style="width: 34%">
-			<p class="c"><a href="products.php?tab=product&product_id=1271">Цветные олимпийские диски в ассортименте</a></p>
+			<a href="products.php?tab=product&product_id=1283">Гантельный ряд от 2.5 до 25 кг</a>
 		</td>
 		<td style="width: 33%">
-			<p class="c"><a href="products.php?tab=product&product_id=1282">Степ-платформа FT-STP-TJ</a></p>
+			<a href="products.php?tab=product&product_id=1271">Цветные олимпийские диски в ассортименте</a>
+		</td>
+		<td style="width: 33%">
+			<a href="products.php?tab=product&product_id=1282">Степ-платформа FT-STP-TJ</a>
 		</td>
 	</tr>
 	<tr align="center" valign="bottom">
@@ -33,26 +35,26 @@
 		</td>
 	</tr>
 	<tr align="center" valign="top">
-		<td>
-			<p class="c" style="margin-bottom: 20px">Гантельный ряд обрезиненный. 10 пар, от 2.5 до 25 кг.</p>
+		<td style="margin-bottom: 20px">
+			Гантельный ряд обрезиненный. 10 пар, от 2.5 до 25 кг.
 		</td>
-		<td>
-			<p class="c" style="margin-bottom: 20px">Олимпийские диски с отверстиями для рук, от 2.5 до 25 кг.</p>
+		<td style="margin-bottom: 20px">
+			Олимпийские диски с отверстиями для рук, от 2.5 до 25 кг.
 		</td>
-		<td>
-			<p class="c" style="margin-bottom: 20px">Степ-платформа с регулированием уровня высоты.</p>
+		<td style="margin-bottom: 20px">
+			Степ-платформа с регулированием уровня высоты.
 		</td>
 	</tr>
 <!-- Второй ряд -->
 	<tr align="center" valign="top">
 		<td style="width: 33%">
-			<p class="c"><a href="products.php?tab=product&product_id=991">Стойка гантельная DR-14</a></p>
+			<a href="products.php?tab=product&product_id=991">Стойка гантельная DR-14</a>
 		</td>
 		<td style="width: 34%">
-			<p class="c"><a href="products.php?tab=product&product_id=950">Гантельный ряд D-04</a></p>
+			<a href="products.php?tab=product&product_id=950">Гантельный ряд D-04</a>
 		</td>
 		<td style="width: 33%">
-			<p class="c"><a href="products.php?tab=product&product_id=1262">Замки для грифов</a></p>
+			<a href="products.php?tab=product&product_id=1262">Замки для грифов</a>
 		</td>
 	</tr>
 	<tr align="center" valign="bottom">
@@ -67,14 +69,14 @@
 		</td>
 	</tr>
 	<tr align="center" valign="top">
-		<td>
-			<p class="c" style="margin-bottom: 20px">Стойка гантельная трехъярусная.</p>
+		<td style="margin-bottom: 20px">
+			Стойка гантельная трехъярусная.
 		</td>
-		<td>
-			<p class="c" style="margin-bottom: 20px">Гантельный ряд 10 пар, профессиональный, хромированный.</p>
+		<td style="margin-bottom: 20px">
+			Гантельный ряд 10 пар, профессиональный, хромированный.
 		</td>
-		<td>
-			<p class="c" style="margin-bottom: 20px">Замки для крепления дисков на грифах.</p>
+		<td style="margin-bottom: 20px">
+			Замки для крепления дисков на грифах.
 		</td>
 	</tr>
 </table>
@@ -90,17 +92,17 @@
 способом.</p>
 
 <p class="p">Наличие качественного тренажера повышает очень важный аспект силовых тренировок: мотивацию. <b>Высокая мотивация</b> позволяет бесконечно совершенствовать свое тело. С помощью наших <a href="products.php?tab=category&category_id=42">тренажеров</a> Вы избавитесь от лишних килограммов, заменив их упругой мышечной массой. Утомление останется в прошлом, так как ваша выносливость будет расти после каждой тренировки. День за днем <b>Body Solid</b> приведет Вас к успеху!</p>
-<br/>
+
 <h2>Лучшие модели нашей коллекции:</h2>
 
 <table cellpadding="2" cellspacing="0"  style="width: 100%; margin-top: 10px">
 	<tr align="center" valign="top">
 		<td style="width: 45%">
-			<p class="c"><a href="products.php?tab=product&product_id=59"> Мультистанция BodySolid G9S</a></p>
+			<a href="products.php?tab=product&product_id=59"> Мультистанция BodySolid G9S</a>
 		</td>
 		<td style="width: 10%" />
 		<td style="width: 45%">
-			<p class="c"><a href="products.php?tab=product&product_id=708">  Силовой тренажер BodySolid DPEC-SF</a></p>
+			<a href="products.php?tab=product&product_id=708">  Силовой тренажер BodySolid DPEC-SF</a>
 		</td>
 	</tr>
 	<tr align="center" valign="bottom">
@@ -108,7 +110,7 @@
 			<a href="products.php?tab=product&product_id=59"><img src="/images/products/preview/p59.jpg" class="product" alt=" Мультистанция BodySolid G9S" title="Мультистанция BodySolid G9S"/></a>
 		</td>
 		<td style="width: 10%">
-                        <img src="images/logo_v.jpg" width="31" height="147" alt="БодиСолид - сделано для жизни">
+			<img src="images/logo_v.jpg" width="31" height="147" alt="БодиСолид - сделано для жизни">
 		</td>
 		<td>
 			<a href="products.php?tab=product&product_id=708"><img src="/images/products/preview/p708.jpg" class="product" alt=" Силовой тренажер BodySolid DPEC-SF" title=" Силовой тренажер BodySolid DPEC-SF"/></a>
@@ -116,11 +118,11 @@
 	</tr>
 	<tr align="center" valign="top">
 		<td>
-			<p class="c" style="margin-bottom: 20px">Многофункциональный тренажёр с двумя весовыми стеками по 95 кг.</p>
+			Многофункциональный тренажёр с двумя весовыми стеками по 95 кг.
 		</td>
 		<td style="width: 10%" />
 		<td>
-			<p class="c" style="margin-bottom: 20px">Профессиональный баттерфляй, позволяющий выполнять упражнения для груди и дельтовидных мышц.</p>
+			Профессиональный баттерфляй, позволяющий выполнять упражнения для груди и дельтовидных мышц.
 		</td>
 	</tr>
 </table>

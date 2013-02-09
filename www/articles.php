@@ -16,7 +16,7 @@
 		$article_text = $articles_row['article_text'];
 ?>
 <p class="path"><a class="path" href="articles.php">Статьи</a> - <?= $article_title ?></p>
-	
+
 <h1><?= $article_title ?></h1><?= $article_text ?> 
 <?	
 	}

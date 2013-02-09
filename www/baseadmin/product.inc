@@ -276,7 +276,7 @@
             <p>Название</p>
           </td>
           <td valign="top" colspan="2">
-            <input type="text" class="text" name="new_name" style="width: 500px" value="<?= $product_name ?>"/>
+            <input type="text" class="text" name="new_name" style="width: 700px" value="<?= $product_name ?>"/>
           </td>
           <td rowspan="12" align="center" valign="top">
             <img src="<?= $product_preview_images.$product_picture ?>" alt="<?= $product_name ?>"/>
@@ -343,7 +343,7 @@
             <p>Аксессуары</p>
           </td>
           <td valign="top" colspan="2">
-            <input type="text" class="text" name="new_addon" style="width: 500px" value="<?= $product_addon ?>"/>
+            <input type="text" class="text" name="new_addon" style="width: 700px" value="<?= $product_addon ?>"/>
           </td>
         </tr>
         <tr>
@@ -351,7 +351,7 @@
             <p>Кр. описание</p>
           </td>
           <td valign="top" colspan="2">
-            <textarea name="new_short_desc" cols="50" rows="3" style="width: 500px"><?= $product_short_desc ?></textarea>
+            <textarea name="new_short_desc" cols="70" rows="3" style="width: 700px"><?= $product_short_desc ?></textarea>
           </td>
         </tr>
         <tr>
@@ -359,7 +359,7 @@
             <p>Подр. описание</p>
           </td>
           <td valign="top" colspan="2">
-            <textarea name="new_full_desc" cols="50" rows="5" class="format" style="width: 500px"><?= $product_full_desc ?></textarea>
+            <textarea name="new_full_desc" cols="70" rows="15" class="format" style="width: 700px"><?= $product_full_desc ?></textarea>
           </td>
         </tr>
         <tr>
@@ -367,7 +367,7 @@
             <p>Видео</p>
           </td>
           <td valign="top" colspan="2">
-            <input type="text" class="text" name="new_video" style="width: 500px" value="<?= $product_video ?>"/>
+            <textarea name="new_video" cols="70" rows="5" class="format" style="width: 700px"><?= $new_video ?></textarea>
           </td>
         </tr>
         <tr>
