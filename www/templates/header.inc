@@ -15,6 +15,7 @@
 			<div class="top">
 				<a href="/" class="index"></a>
 				<a href="/articles.php" class="articles"></a>
+				<a href="/delivery.php" class="delivery"></a>
 				<a href="/about.php" class="about"></a>
 				<div class="phone">
 					(495) 518-52-97; (495) 518-14-19

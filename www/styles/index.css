@@ -108,19 +108,28 @@ div.top {
 	}
 	
 	div.top a.articles {
-		margin-left: 508px;
-		margin-top: 47px;
-		width: 155px;
-		height: 20px;
+		margin-left: 348px;
+		margin-top: 46px;
+		width: 147px;
+		height: 23px;
 		display: block;
 		position: absolute;
 	}
 	
 	div.top a.about {
-		margin-left: 708px;
-		margin-top: 47px;
-		width: 125px;
-		height: 20px;
+		margin-left: 742px;
+		margin-top: 46px;
+		width: 108px;
+		height: 23px;
+		display: block;
+		position: absolute;
+	}
+	
+	div.top a.delivery {
+		margin-left: 523px;
+		margin-top: 46px;
+		width: 196px;
+		height: 23px;
 		display: block;
 		position: absolute;
 	}
