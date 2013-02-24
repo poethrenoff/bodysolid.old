@@ -11,7 +11,7 @@
 					<a href="index.php">Силовые тренажеры BodySolid</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="articles.php">Особенности</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="about.php">Где купить</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="subscribe.php">Прайс-лист</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="links.php">Ссылки</a>
 				</div>
 				<div class="footer_bottom">
-					Copyright © <?= date('Y') ?> Body Solid. All rights reserved.
+					Copyright © <?= date('Y') ?> Body Solid. All rights reserved. <a href="https://www.free-lance.ru/users/Mayber/" target="_blank">Дизайн - May Ber</a>
 				</div>
 			</div>
 		</div>

@@ -190,7 +190,7 @@ div.footer {
 
 	div.footer_top {
 		position: absolute;
-		width: 100%;
+		width: 1200px;
 		margin-top: 35px;
 		
 		color: #BFBEBA;
@@ -210,14 +210,9 @@ div.footer {
 		text-align: center;
 	}
 
-	div.footer_top {
-		position: absolute;
-		width: 1200px;
-		margin-top: 35px;
-		
-		color: #BFBEBA;
-		text-align: center;
-	}
+		div.footer_bottom a {
+			color: #BFBEBA;
+		}
 
 div.catalogue {
 	width: 323px;
