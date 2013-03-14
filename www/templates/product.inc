@@ -1,7 +1,7 @@
 <?	
 	$product_id = init_integer('product_id', 0);
 	
-	$products_sql = mysql_query("select * from products where product_id = '$product_id'");
+	$products_sql = mysql_query("select * from products where product_id = '$product_id' and product_active = 1");
 	
 	if ( $products_row = mysql_fetch_array($products_sql) )
 	{
