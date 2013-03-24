@@ -17,9 +17,7 @@
 				<a href="/articles.php" class="articles"></a>
 				<a href="/delivery.php" class="delivery"></a>
 				<a href="/about.php" class="about"></a>
-				<div class="phone">
-					(495) 518-52-97; (495) 518-14-19
-				</div>
+				<a href="mailto:<?= get_preference('manager_email', 'andreisport@bodysolid.ru') ?>" class="email"></a>
 				<div class="card">
 					<a href="/basket.php">корзина</a> (<?= @array_sum($_SESSION['_products']) ?> шт.)
 				</div>

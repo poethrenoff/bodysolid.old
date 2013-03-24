@@ -86,16 +86,13 @@ div.top {
 	background-repeat: no-repeat;
 }
 
-	div.top div.phone {
-		position: absolute;
-		width: 310px;
-		height: 30px;
+	div.top a.email {
 		margin-top: 2px;
-		margin-left: 860px;
-		
-		color: #ffffff;
-		font-size: 20px;
-		text-align: right;
+		margin-left: 810px;
+		width: 35px;
+		height: 25px;
+		display: block;
+		position: absolute;
 	}
 	
 	div.top a.index {
