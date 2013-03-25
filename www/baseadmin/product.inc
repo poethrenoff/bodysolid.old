@@ -367,7 +367,7 @@
             <p>Видео</p>
           </td>
           <td valign="top" colspan="2">
-            <textarea name="new_video" cols="70" rows="5" class="format" style="width: 700px"><?= $new_video ?></textarea>
+            <textarea name="new_video" cols="70" rows="5" class="format" style="width: 700px"><?= $product_video ?></textarea>
           </td>
         </tr>
         <tr>
