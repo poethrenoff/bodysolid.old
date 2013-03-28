@@ -211,6 +211,12 @@ div.footer {
 			color: #BFBEBA;
 		}
 
+	div.footer_counter {
+		position: absolute;
+		margin-top: 60px;
+		margin-left: 90px;
+	}
+
 div.catalogue {
 	width: 323px;
 	margin: 315px 0px 30px 60px;
