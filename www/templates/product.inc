@@ -16,15 +16,12 @@
 		$product_no_discount = $products_row['product_no_discount'];
 		$product_addon = $products_row['product_addon'];
 		
-		if ( !$product_no_discount && $product_price > $discount_limit )
-			$product_price *= $discount_value;
-		
 		if ( !file_exists($_SERVER['DOCUMENT_ROOT'].$product_images.$product_picture) ||
 			 !is_file($_SERVER['DOCUMENT_ROOT'].$product_images.$product_picture) )
 			$product_picture = $product_picture_default;
 		
-		list($category_id, $category_name) = mysql_fetch_row( mysql_query(
-			"select categories.category_id, categories.category_name
+		list($category_id, $category_name, $category_by_course) = mysql_fetch_row( mysql_query(
+			"select categories.category_id, categories.category_name, category_by_course
 			 from categories inner join products on 
 			 products.category_id = categories.category_id where products.product_id = '$product_id'") );
 
@@ -32,6 +29,10 @@
 			"select groups.group_id, groups.group_name
 			 from groups inner join categories on 
 			 categories.group_id = groups.group_id where categories.category_id = '$category_id'") );
+		
+		$product_price = round($category_by_course ? $product_price * $course : $product_price);
+		if ( !$product_no_discount && $product_price > $discount_limit )
+			$product_price *= $discount_value;
 ?>
 <p class="path"><a class="path" href="?tab=group&amp;group_id=<?= $group_id ?>"><?= $group_name ?></a> - <a class="path" href="?tab=category&amp;category_id=<?= $category_id ?>"><?= $category_name ?></a> - <?= $product_name ?></p>
 
@@ -52,7 +53,7 @@
 			<table cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 10px">
 				<tr valign="middle">
 					<td style="width: 80%">
-						<p>÷ена: <b><?= round($product_price * $course) ?> р.</b></p>
+						<p>÷ена: <b><?= $product_price ?> р.</b></p>
 					</td>
 					<td style="width: 20%" align="right">
 						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 10px"><img src="images/basket.gif" alt=" упить" title=" упить"/></a>

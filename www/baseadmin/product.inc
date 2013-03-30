@@ -424,11 +424,11 @@
         }       
 
         list($group_name) = mysql_fetch_row(mysql_query("select group_name from groups where group_id = '$group'"));
-        list($category_name) = mysql_fetch_row(mysql_query("select category_name from categories where category_id = '$category'"));
+        list($category_name, $category_by_course) = mysql_fetch_row(mysql_query("select category_name, category_by_course from categories where category_id = '$category'"));
 
-      	PrintHeader( "<p><a href=\"index.php?tab=group\">Группы товаров</a> - <a href=\"index.php?tab=category&group=$group\">$group_name</a> - $category_name</p>" );
+        PrintHeader( "<p><a href=\"index.php?tab=group\">Группы товаров</a> - <a href=\"index.php?tab=category&group=$group\">$group_name</a> - $category_name</p>" );
  
-    if ( $error ) { ?>    	  
+    if ( $error ) { ?>
     <p class="baseerror"><?= $error ?></p>
 <?  } ?>
     <form id="form" name="form" method="post">
@@ -482,6 +482,7 @@
           $product_name = $products['product_name'];
           $product_active = $products['product_active'];
           $product_price = (float) $products['product_price'];
+		  $product_price = round($category_by_course ? $product_price * $course : $product_price);
 ?>
         <tr style="height: 26px">
           <td align="center">
@@ -506,7 +507,7 @@
           </td>
 <?  } ?>
           <td align="center" style="width: 75px; border: 1px solid #92BA85; background-color: <?= ($i % 2)?"#FFFFFF":"#F8FCF8" ?>">
-            <p><?= $product_price * $course ?></p>
+            <p><?= $product_price ?></p>
           </td>
         </tr>
 <?   

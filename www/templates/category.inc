@@ -10,6 +10,7 @@
 	{
 		$category_name = $categories_row['category_name'];
 		$category_comment = $categories_row['category_comment'];
+		$category_comment = $categories_row['category_comment'];
 
 		$category_comment = '<p class="p">'.join('</p><p class="p">', explode( "\r\n\r\n", trim($category_comment) ) ).'</p>';
 
@@ -60,7 +61,7 @@
 			while ( $row = mysql_fetch_array($products_sql) )
 				$products_rows[] = $row;
 			
-			PrintProducts($products_rows);
+			PrintProducts($products_rows, $categories_row);
 		}
 	}
 ?>

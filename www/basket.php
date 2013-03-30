@@ -53,8 +53,8 @@
 			}
 
 			// Подготовка извещений для менеджера и клиента
-			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount
-											from order_items inner join products on order_items.product_id = products.product_id
+			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount, categories.category_by_course
+											from order_items inner join products on order_items.product_id = products.product_id inner join categories on categories.category_id = products.category_id
 											where order_id = '$order_id'");
 			$sum = 0; $num = 1; $basket_text = '';
 			while ( $order_items_row = mysql_fetch_array($order_items_sql) ) 
@@ -62,11 +62,12 @@
 			  	$product_id = $order_items_row['product_id'];
 			  	$product_name = $order_items_row['product_name'];
 			  	$product_no_discount = $order_items_row['product_no_discount'];
+				$category_by_course = $order_items_row['category_by_course'];
 			  	
 			  	$product_price = $order_items_row['product_price'];
+			  	$product_price = round($category_by_course ? $product_price * $course : $product_price);
 				if ( !$product_no_discount && $product_price > $discount_limit )
 					$product_price *= $discount_value;
-			  	$product_price = round($product_price * $course);
 			  	
 			  	$product_count = $order_items_row['product_count'];
 			  	
@@ -168,16 +169,18 @@
 
 	foreach ( $_SESSION['_products'] as $product_id => $product_count )
 	{
-		$products_sql = mysql_query("select * from products where product_id = '$product_id' and product_active = '1'");
+		$products_sql = mysql_query("select * from products, categories.category_by_course
+			inner join categories on categories.category_id = products.category_id where product_id = '$product_id' and product_active = '1'");
 		if ( $products_row = mysql_fetch_array($products_sql) )
 		{
 			$product_name = $products_row['product_name'];
 		  	$product_no_discount = $products_row['product_no_discount'];
+			$category_by_course = $products_row['category_by_course'];
 
 		  	$product_price = $products_row['product_price'];
+			$product_price = round($category_by_course ? $product_price * $course : $product_price);
 			if ( !$product_no_discount && $product_price > $discount_limit )
 				$product_price *= $discount_value;
-		  	$product_price = round($product_price * $course);
 
 			$products[$product_id] = array( 'product_name' => $product_name,
 											'product_price' => $product_price,

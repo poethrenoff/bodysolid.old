@@ -114,8 +114,8 @@
 				<td style="width: 40%">
 					<table cellpadding="1" cellspacing="0" style="width: 100%; border-collapse: collapse">
 <?
-			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount
-											from order_items inner join products on order_items.product_id = products.product_id
+			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount, categories.category_by_course
+											from order_items inner join products on order_items.product_id = products.product_id inner join categories on categories.category_id = products.category_id
 											where order_id = '$order_id'");
 			
 			$sum = 0; $num = 1;
@@ -124,11 +124,12 @@
 			  	$product_id = $order_items_row['product_id'];
 			  	$product_name = $order_items_row['product_name'];
 			  	$product_no_discount = $order_items_row['product_no_discount'];
+				$category_by_course = $order_items_row['category_by_course'];
 			  	
 			  	$product_price = $order_items_row['product_price'];
+			  	$product_price = round($category_by_course ? $product_price * $course : $product_price);
 				if ( !$product_no_discount && $product_price > $discount_limit )
 					$product_price *= $discount_value;
-			  	$product_price = round($product_price * $course);
 
 			  	$product_count = $order_items_row['product_count'];
 			  	

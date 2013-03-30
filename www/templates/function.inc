@@ -1,9 +1,11 @@
 <?	
-	function PrintProducts( $products_rows )
+	function PrintProducts( $products_rows, $categories_row )
 	{
 		$max_product_col = 3; $products_cnt = count($products_rows);
 		
 		global $product_preview_images, $product_preview_picture_default, $course, $discount_limit, $discount_value;
+		
+		$category_by_course = $categories_row['category_by_course'];
 ?>
 
 <table cellpadding="3" cellspacing="0" style="width: 100%">
@@ -84,13 +86,14 @@
 					$product_short_desc = $products_rows[$i + $j]['product_short_desc'];
 				  	$product_no_discount = $products_rows[$i + $j]['product_no_discount'];
 					
+					$product_price = round($category_by_course ? $product_price * $course : $product_price);
 					if ( !$product_no_discount && $product_price > $discount_limit )
-						$product_price *= $discount_value;					
+						$product_price *= $discount_value;
 ?>
 			<table cellpadding="2" cellspacing="0" style="width: 100%">
 				<tr>
 					<td style="width: 50%; text-align: center">
-						<b><?= round($product_price * $course) ?> р.</b>
+						<b><?= $product_price ?> р.</b>
 					</td>
 					<td style="width: 50%" align="right">
 						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 35px"><img src="images/basket.gif" alt=" упить" title=" упить"/></a>
