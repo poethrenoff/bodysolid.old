@@ -482,7 +482,7 @@
           $product_name = $products['product_name'];
           $product_active = $products['product_active'];
           $product_price = (float) $products['product_price'];
-		  $product_price = round($category_by_course ? $product_price * $course : $product_price);
+		  $product_price_cource = round($category_by_course ? $product_price * $course : $product_price);
 ?>
         <tr style="height: 26px">
           <td align="center">
@@ -507,7 +507,7 @@
           </td>
 <?  } ?>
           <td align="center" style="width: 75px; border: 1px solid #92BA85; background-color: <?= ($i % 2)?"#FFFFFF":"#F8FCF8" ?>">
-            <p><?= $product_price ?></p>
+            <p><?= $product_price_cource ?></p>
           </td>
         </tr>
 <?   
