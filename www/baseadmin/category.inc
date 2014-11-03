@@ -47,6 +47,7 @@
             $new_short_name = init_string('new_short_name',''); $new_short_name = norm_string($new_short_name); 
             $new_insert_name = init_string('new_insert_name',''); $new_insert_name = norm_string($new_insert_name); 
             $new_comment = init_string('new_comment',''); $new_comment = norm_string($new_comment);
+            $new_by_course = init_string('new_by_course') ? 1 : 0;
             
             if ( !$new_name )
               $error = "Нельзя оставлять категорию без названия!";
@@ -57,7 +58,8 @@
                 mysql_query("update categories set category_name = '$new_name',         	                                       
                 	                               category_short_name = '$new_short_name',
                 	                               category_insert_name = '$new_insert_name',
-                                                   category_comment = '$new_comment'
+                                                   category_comment = '$new_comment',
+                                                   category_by_course = '$new_by_course'
                              where category_id = '$id'");
               }
               else
@@ -66,8 +68,8 @@
                                                             where group_id = '$group' 
                                                             order by category_order desc limit 1"));
                 $order++;
-                mysql_query("insert into categories (group_id, category_name, category_short_name, category_insert_name, category_comment, category_order)
-                                              values('$group', '$new_name', '$new_short_name', '$new_insert_name', '$new_comment', '$order')");
+                mysql_query("insert into categories (group_id, category_name, category_short_name, category_insert_name, category_comment, category_by_course, category_order)
+                                              values('$group', '$new_name', '$new_short_name', '$new_insert_name', '$new_comment', '$new_by_course', '$order')");
                 $id = mysql_insert_id();
 
                 $action = 'edit';
@@ -111,11 +113,12 @@
               $category_insert_name = $category['category_insert_name'];
               $category_picture = $category['category_picture'];
               $category_comment = $category['category_comment'];
+              $category_by_course = $category['category_by_course'];
             }
             else
             {
               $category_id = 0;
-              $category_name = $category_short_name = $category_insert_name = $category_picture = $category_comment = '';
+              $category_name = $category_short_name = $category_insert_name = $category_picture = $category_comment = $category_by_course = '';
             }
             
             if ( !file_exists($_SERVER['DOCUMENT_ROOT'].$category_images.$category_picture) ||
@@ -165,10 +168,18 @@
         </tr>
         <tr>
           <td valign="top">
+            <p>Пересчитывать<br/> в доллары</p>
+          </td>
+          <td valign="top" colspan="2">
+            <input type="checkbox" name="new_by_course" value="1"<? if ($category_by_course) { ?> checked="checked"<? } ?>/>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
             <p>Фотография</p>
           </td>
           <td valign="top" colspan="2">
-            <input class="text" type="file" name="file" style="width: 300px" size="44"/>
+            <input class="text" type="file" name="file" style="width: 300px; border: none;" size="44"/>
           </td>
         </tr>
         <tr>
