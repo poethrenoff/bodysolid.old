@@ -9,7 +9,7 @@
 	// Контекстный поиск
 	$search_text = init_string('search_text', '');
 
-	$restore_search_text = htmlspecialchars( norm_text($search_text) );
+	$restore_search_text = htmlspecialchars( norm_text($search_text), ENT_QUOTES, 'Windows-1251' );
 	$search_text = norm_html( $search_text );
 	
 	// Поиск по каталогу

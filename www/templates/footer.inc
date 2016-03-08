@@ -4,7 +4,7 @@
 				<div class="clear"></div>
 			</div>
 			<div class="setlinks">
-				<? require_once( 'http://testea.ru/setlinks/slsimple.php?host=' . urlencode( $_SERVER['HTTP_HOST'] ) . '&uri=' . urlencode( $_SERVER['REQUEST_URI'] ) ); ?>
+				<? //require_once( 'http://testea.ru/setlinks/slsimple.php?host=' . urlencode( $_SERVER['HTTP_HOST'] ) . '&uri=' . urlencode( $_SERVER['REQUEST_URI'] ) ); ?>
 			</div>
 			<div class="footer">
 				<div class="footer_top">

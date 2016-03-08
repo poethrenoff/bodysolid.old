@@ -113,12 +113,12 @@
 	              }
               
                   // Закачка файла с инструкцией
-                  if ( $HTTP_POST_FILES['instruct']['error'] != UPLOAD_ERR_NO_FILE )
+                  if ( $_FILES['instruct']['error'] != UPLOAD_ERR_NO_FILE )
                   {
-                    $file = $HTTP_POST_FILES['instruct']['tmp_name'];
-                    $user = $HTTP_POST_FILES['instruct']['name'];
-                    $size = $HTTP_POST_FILES['instruct']['size'];
-                    $type = $HTTP_POST_FILES['instruct']['type'];
+                    $file = $_FILES['instruct']['tmp_name'];
+                    $user = $_FILES['instruct']['name'];
+                    $size = $_FILES['instruct']['size'];
+                    $type = $_FILES['instruct']['type'];
                 
                     $tfile = 'i'.$id.strrchr($user, '.'); $tpath = $_SERVER['DOCUMENT_ROOT'].$product_instructions;
                 
@@ -131,12 +131,12 @@
                   }
 
                   // Закачка файла с большой фотографией
-                  if ( $HTTP_POST_FILES['picture_big']['error'] != UPLOAD_ERR_NO_FILE )
+                  if ( $_FILES['picture_big']['error'] != UPLOAD_ERR_NO_FILE )
                   {
-                    $file = $HTTP_POST_FILES['picture_big']['tmp_name'];
-                    $user = $HTTP_POST_FILES['picture_big']['name'];
-                    $size = $HTTP_POST_FILES['picture_big']['size'];
-                    $type = $HTTP_POST_FILES['picture_big']['type'];
+                    $file = $_FILES['picture_big']['tmp_name'];
+                    $user = $_FILES['picture_big']['name'];
+                    $size = $_FILES['picture_big']['size'];
+                    $type = $_FILES['picture_big']['type'];
                 
                     $tfile = 'p'.$id.strrchr($user, '.'); 
                     $tpath = $_SERVER['DOCUMENT_ROOT'].$product_big_images;
@@ -181,8 +181,8 @@
 	            $brand_id = $product['brand_id'];
 	            $product_price = (float) $product['product_price'];
 	            $product_short_desc = $product['product_short_desc'];
-	            $product_full_desc = htmlspecialchars( $product['product_full_desc'] );
-	            $product_video = htmlspecialchars( $product['product_video'] );
+	            $product_full_desc = htmlspecialchars( $product['product_full_desc'], ENT_QUOTES, 'Windows-1251' );
+	            $product_video = htmlspecialchars( $product['product_video'], ENT_QUOTES, 'Windows-1251' );
 	            $product_picture = $product['product_picture'];
 	            $product_picture_big = $product['product_picture_big'];
 	            $product_instruct = $product['product_instruct'];

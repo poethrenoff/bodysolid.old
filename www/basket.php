@@ -169,7 +169,7 @@
 
 	foreach ( $_SESSION['_products'] as $product_id => $product_count )
 	{
-		$products_sql = mysql_query("select * from products, categories.category_by_course
+		$products_sql = mysql_query("select products.*, categories.category_by_course from products
 			inner join categories on categories.category_id = products.category_id where product_id = '$product_id' and product_active = '1'");
 		if ( $products_row = mysql_fetch_array($products_sql) )
 		{
@@ -227,11 +227,11 @@
 	else if ( $action === 'preview' )
 	{
 		$client_data = array( 'client_name' => '', 'client_email' => '', 'client_phone' => '', 'client_address' => '', 'client_comment' => '' );
-		$client_data['client_name'] = $_SESSION['_client_name'] = htmlspecialchars( norm_text( init_string('client_name', '') ) );
-		$client_data['client_email'] = $_SESSION['_client_email'] = htmlspecialchars( norm_text( init_string('client_email', '') ) );
-		$client_data['client_phone'] = $_SESSION['_client_phone'] = htmlspecialchars( norm_text( init_string('client_phone', '') ) );
-		$client_data['client_address'] = $_SESSION['_client_address'] = htmlspecialchars( norm_text( init_string('client_address', '') ) );
-		$client_data['client_comment'] = $_SESSION['_client_comment'] = htmlspecialchars( norm_text( init_string('client_comment', '') ) );
+		$client_data['client_name'] = $_SESSION['_client_name'] = htmlspecialchars( norm_text( init_string('client_name', '') ), ENT_QUOTES, 'Windows-1251' );
+		$client_data['client_email'] = $_SESSION['_client_email'] = htmlspecialchars( norm_text( init_string('client_email', '') ), ENT_QUOTES, 'Windows-1251' );
+		$client_data['client_phone'] = $_SESSION['_client_phone'] = htmlspecialchars( norm_text( init_string('client_phone', '') ), ENT_QUOTES, 'Windows-1251' );
+		$client_data['client_address'] = $_SESSION['_client_address'] = htmlspecialchars( norm_text( init_string('client_address', '') ), ENT_QUOTES, 'Windows-1251' );
+		$client_data['client_comment'] = $_SESSION['_client_comment'] = htmlspecialchars( norm_text( init_string('client_comment', '') ), ENT_QUOTES, 'Windows-1251' );
 
 		PrintBasket($products, false);
 		PrintOrderForm($client_data, false);

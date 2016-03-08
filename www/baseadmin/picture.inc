@@ -47,12 +47,12 @@
           }
 
           // Закачка файла с большой фотографией
-          if ( $HTTP_POST_FILES['picture_big']['error'] != UPLOAD_ERR_NO_FILE )
+          if ( $_FILES['picture_big']['error'] != UPLOAD_ERR_NO_FILE )
           {
-            $file = $HTTP_POST_FILES['picture_big']['tmp_name'];
-            $user = $HTTP_POST_FILES['picture_big']['name'];
-            $size = $HTTP_POST_FILES['picture_big']['size'];
-            $type = $HTTP_POST_FILES['picture_big']['type'];
+            $file = $_FILES['picture_big']['tmp_name'];
+            $user = $_FILES['picture_big']['name'];
+            $size = $_FILES['picture_big']['size'];
+            $type = $_FILES['picture_big']['type'];
         
             $tfile = 'a'.$id.'-'.$pid.strrchr($user, '.');
 			$tpath = $_SERVER['DOCUMENT_ROOT'].$product_additional_big_images;

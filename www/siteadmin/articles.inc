@@ -50,7 +50,7 @@
 
 				$article_title = $articles_row['article_title'];
 				$article_announce = $articles_row['article_announce'];
-				$article_text = htmlspecialchars( $articles_row['article_text'] );
+				$article_text = htmlspecialchars( $articles_row['article_text'], ENT_QUOTES, 'Windows-1251' );
 			}
 			else
 			{

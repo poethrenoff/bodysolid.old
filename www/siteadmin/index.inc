@@ -20,7 +20,7 @@
 		fputs($ftext,$new_template); fclose($ftext);
 	}
 	
-	$template = htmlspecialchars(join('', file('../templates/index.inc')));
+	$template = htmlspecialchars(file_get_contents('../templates/index.inc'), ENT_QUOTES, 'Windows-1251');
 
 ?>
 		<form id="form" name="form" method="post" onsubmit="return ( form.new_template.value.length > 0 )">

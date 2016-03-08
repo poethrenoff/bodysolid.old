@@ -2,6 +2,8 @@
 	require 'connect.inc';
 
 	session_start();
+    
+    ini_set('default_charset', 'Windows-1251');
 	
 	if ( !get_magic_quotes_gpc() )
 	{
@@ -77,7 +79,7 @@
 
 	function norm_string($str)
 	{
-		return htmlspecialchars(str_replace('\"','"',trim($str)));
+		return htmlspecialchars(str_replace('\"','"',trim($str)), ENT_QUOTES, 'Windows-1251');
 	}
 
 	function norm_html($str)

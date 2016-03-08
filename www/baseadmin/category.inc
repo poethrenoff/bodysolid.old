@@ -75,12 +75,12 @@
                 $action = 'edit';
               }
               
-              if ( $HTTP_POST_FILES['file']['error'] != UPLOAD_ERR_NO_FILE )
+              if ( $_FILES['file']['error'] != UPLOAD_ERR_NO_FILE )
               {
-                $file = $HTTP_POST_FILES['file']['tmp_name'];
-                $user = $HTTP_POST_FILES['file']['name'];
-                $size = $HTTP_POST_FILES['file']['size'];
-                $type = $HTTP_POST_FILES['file']['type'];
+                $file = $_FILES['file']['tmp_name'];
+                $user = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $type = $_FILES['file']['type'];
 
                 $tfile = 'c'.$id.strrchr($user, '.'); $tpath = $_SERVER['DOCUMENT_ROOT'].$category_images;
                     
