@@ -3,6 +3,8 @@
   Deny from all
 </Files>
 
+php_value short_open_tag 1
+
 ErrorDocument 404 http://bodysolid.ru/
 
 DirectoryIndex index.php

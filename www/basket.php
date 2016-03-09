@@ -53,7 +53,7 @@
 			}
 
 			// Подготовка извещений для менеджера и клиента
-			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount, categories.category_by_course
+			$order_items_sql = mysql_query("select order_items.*, products.product_name, products.product_price, products.product_no_discount, products.brand_id, categories.category_by_course
 											from order_items inner join products on order_items.product_id = products.product_id inner join categories on categories.category_id = products.category_id
 											where order_id = '$order_id'");
 			$sum = 0; $num = 1; $basket_text = '';
@@ -66,8 +66,11 @@
 			  	
 			  	$product_price = $order_items_row['product_price'];
 			  	$product_price = round($category_by_course ? $product_price * $course : $product_price);
-				if ( !$product_no_discount && $product_price > $discount_limit )
-					$product_price *= $discount_value;
+				if ($order_items_row['brand_id'] == 2) {
+					$product_price = ceil($product_price * 0.75 / 100) * 100;
+				} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
+					$product_price = $product_price * $discount_value;
+				}
 			  	
 			  	$product_count = $order_items_row['product_count'];
 			  	
@@ -179,8 +182,11 @@
 
 		  	$product_price = $products_row['product_price'];
 			$product_price = round($category_by_course ? $product_price * $course : $product_price);
-			if ( !$product_no_discount && $product_price > $discount_limit )
-				$product_price *= $discount_value;
+			if ($products_row['brand_id'] == 2) {
+				$product_price = ceil($product_price * 0.75 / 100) * 100;
+			} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
+				$product_price = $product_price * $discount_value;
+			}
 
 			$products[$product_id] = array( 'product_name' => $product_name,
 											'product_price' => $product_price,
@@ -202,7 +208,7 @@
 <h2 style="text-align: center">Спасибо! Ваш заказ принят, менеджер свяжется с Вами в ближайшее время!</h2>
 	
 <p class="p">Заказы обрабатываются по рабочим дням с 10 до 19 часов. Время доставки оговаривается с менеджером дополнительно, исходя из пожеланий клиента.</p>
-<p class="p">Любые вопросы по состоянию вашего заказа можно задать в рабочее время по телефонам <b>(495) 518-14-19, 518-52-97.</b>.</p>
+<p class="p">Любые вопросы по состоянию вашего заказа можно задать в рабочее время по телефонам <b>(495) 518-14-19, 518-52-97</b>.</p>
 <?
 	}
 	else if ( $basket_success === 'false' )

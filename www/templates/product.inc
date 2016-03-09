@@ -30,9 +30,12 @@
 			 from groups inner join categories on 
 			 categories.group_id = groups.group_id where categories.category_id = '$category_id'") );
 		
-		$product_price = round($category_by_course ? $product_price * $course : $product_price);
-		if ( !$product_no_discount && $product_price > $discount_limit )
-			$product_price *= $discount_value;
+		$product_price = $product_price_old = round($category_by_course ? $product_price * $course : $product_price);
+		if ($products_row['brand_id'] == 2) {
+			$product_price = ceil($product_price * 0.75 / 100) * 100;
+		} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
+			$product_price = $product_price * $discount_value;
+		}
 ?>
 <p class="path"><a class="path" href="?tab=group&amp;group_id=<?= $group_id ?>"><?= $group_name ?></a> - <a class="path" href="?tab=category&amp;category_id=<?= $category_id ?>"><?= $category_name ?></a> - <?= $product_name ?></p>
 
@@ -53,7 +56,10 @@
 			<table cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 10px">
 				<tr valign="middle">
 					<td style="width: 80%">
-						<p>÷ена: <b><?= $product_price ?> р.</b></p>
+<? if ($product_price < $product_price_old) { ?>
+						<s style="color: #666666"><?= $product_price_old ?> р.</s><br>
+<? } ?>
+						<b><?= $product_price ?> р.</b>
 					</td>
 					<td style="width: 20%" align="right">
 						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 10px"><img src="images/basket.gif" alt=" упить" title=" упить"/></a>

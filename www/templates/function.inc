@@ -84,15 +84,21 @@
 					$product_id = $products_rows[$i + $j]['product_id'];
 					$product_price = $products_rows[$i + $j]['product_price'];
 					$product_short_desc = $products_rows[$i + $j]['product_short_desc'];
-				  	$product_no_discount = $products_rows[$i + $j]['product_no_discount'];
+					$product_no_discount = $products_rows[$i + $j]['product_no_discount'];
 					
-					$product_price = round($category_by_course ? $product_price * $course : $product_price);
-					if ( !$product_no_discount && $product_price > $discount_limit )
-						$product_price *= $discount_value;
+					$product_price = $product_price_old = round($category_by_course ? $product_price * $course : $product_price);
+					if ($products_rows[$i + $j]['brand_id'] == 2) {
+						$product_price = ceil($product_price * 0.75 / 100) * 100;
+					} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
+						$product_price = $product_price * $discount_value;
+					}
 ?>
 			<table cellpadding="2" cellspacing="0" style="width: 100%">
 				<tr>
 					<td style="width: 50%; text-align: center">
+<? if ($product_price < $product_price_old) { ?>
+						<s style="color: #666666"><?= $product_price_old ?> ð.</s><br>
+<? } ?>
 						<b><?= $product_price ?> ð.</b>
 					</td>
 					<td style="width: 50%" align="right">
