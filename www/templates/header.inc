@@ -9,6 +9,22 @@
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/styles/index.css" type="text/css"/>
 		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.form.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.simplemodal.1.4.4.min.js"></script>
+		<script type="text/javascript">
+			function discount(product_name) {
+				$.get('/discount.php', function (response){
+					$(response).modal({
+						opacity: 50,
+						overlayClose: true,
+						minHeight: 300, minWidth: 500, 
+						closeHTML: '<a class="modalCloseImg" title="Закрыть"></a>'
+					});
+					$('input[name="client_product"]').val(product_name);
+				});
+				return false;
+			}
+		</script>
 	</head>
 	<body>
 		<div class="<?= $_SERVER['SCRIPT_NAME'] == '/index.php' ? 'index' : 'default' ?>">

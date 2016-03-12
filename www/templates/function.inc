@@ -1,9 +1,9 @@
-<?	
-	function PrintProducts( $products_rows, $categories_row )
+<?
+	function PrintProducts( $products_rows, $categories_row, $show_description = true, $show_discount = false )
 	{
 		$max_product_col = 3; $products_cnt = count($products_rows);
 		
-		global $product_preview_images, $product_preview_picture_default, $course, $discount_limit, $discount_value;
+		global $product_preview_images, $product_preview_picture_default, $course, $discount_limit, $discount_value, $image_base;
 		
 		$category_by_course = $categories_row['category_by_course'];
 ?>
@@ -25,39 +25,7 @@
 					$product_id = $products_rows[$i + $j]['product_id'];
 					$product_name = $products_rows[$i + $j]['product_name'];
 ?>
-			<a href="?tab=product&amp;product_id=<?= $product_id ?>"><?= $product_name ?></a>
-<?
-				}
-				else
-				{
-?>
-			&nbsp;
-<?
-   				}
-?>
-		</td>
-<?
-			}
-?>
-	</tr>
-	<tr align="center" valign="bottom">
-<?
-			for ( $j = 0; $j < $max_product_col; $j++ )
-			{
-?>
-		<td>
-<?
-				if ( $i + $j < $products_cnt )
-				{
-					$product_id = $products_rows[$i + $j]['product_id'];
-					$product_name = $products_rows[$i + $j]['product_name'];
-					$product_picture = $products_rows[$i + $j]['product_picture'];
-					
-					if ( !file_exists($_SERVER['DOCUMENT_ROOT'].$product_preview_images.$product_picture) ||
-						 !is_file($_SERVER['DOCUMENT_ROOT'].$product_preview_images.$product_picture) )
-						$product_picture = $product_preview_picture_default;
-?>
-			<a href="?tab=product&amp;product_id=<?= $product_id ?>"><img src="<?= $product_preview_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/></a>
+			<a href="products.php?tab=product&amp;product_id=<?= $product_id ?>"><?= $product_name ?></a>
 <?
 				}
 				else
@@ -77,41 +45,25 @@
 			for ( $j = 0; $j < $max_product_col; $j++ )
 			{
 ?>
-		<td>
+		<td style="height: 150px">
 <?
 				if ( $i + $j < $products_cnt )
 				{
 					$product_id = $products_rows[$i + $j]['product_id'];
-					$product_price = $products_rows[$i + $j]['product_price'];
-					$product_short_desc = $products_rows[$i + $j]['product_short_desc'];
-					$product_no_discount = $products_rows[$i + $j]['product_no_discount'];
+					$product_name = $products_rows[$i + $j]['product_name'];
+					$product_picture = $products_rows[$i + $j]['product_picture'];
 					
-					$product_price = $product_price_old = round($category_by_course ? $product_price * $course : $product_price);
-					if ($products_rows[$i + $j]['brand_id'] == 2) {
-						$product_price = ceil($product_price * 0.75 / 100) * 100;
-					} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
-						$product_price = $product_price * $discount_value;
+					if ( !file_exists($_SERVER['DOCUMENT_ROOT'].$product_preview_images.$product_picture) ||
+						 !is_file($_SERVER['DOCUMENT_ROOT'].$product_preview_images.$product_picture) )
+						$product_picture = $product_preview_picture_default;
+					
+					if ($show_discount) {
+?>
+			<a href="discount.php" onclick="return discount('<?= $product_name ?>')" class="discount"><img src="/images/discount.png"></a>
+<?
 					}
 ?>
-			<table cellpadding="2" cellspacing="0" style="width: 100%">
-				<tr>
-					<td style="width: 50%; text-align: center">
-<? if ($product_price < $product_price_old) { ?>
-						<s style="color: #666666"><?= $product_price_old ?> р.</s><br>
-<? } ?>
-						<b><?= $product_price ?> р.</b>
-					</td>
-					<td style="width: 50%" align="right">
-						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 35px"><img src="images/basket.gif" alt=" упить" title=" упить"/></a>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: center">
-						<?= $product_short_desc ?>
-					</td>
-				</tr>
-			</table>
-	
+			<a href="products.php?tab=product&amp;product_id=<?= $product_id ?>"><img src="<?= $image_base.$product_preview_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/></a>
 <?
 				}
 				else
@@ -127,6 +79,64 @@
 ?>
 	</tr>
 <?
+			if ($show_description) {
+?>
+	<tr align="center" valign="top">
+<?
+				for ( $j = 0; $j < $max_product_col; $j++ )
+				{
+?>
+		<td>
+<?
+					if ( $i + $j < $products_cnt )
+					{
+						$product_id = $products_rows[$i + $j]['product_id'];
+						$product_price = $products_rows[$i + $j]['product_price'];
+						$product_short_desc = $products_rows[$i + $j]['product_short_desc'];
+						$product_no_discount = $products_rows[$i + $j]['product_no_discount'];
+						
+						$product_price = $product_price_old = round($category_by_course ? $product_price * $course : $product_price);
+						if ($products_rows[$i + $j]['brand_id'] == 2) {
+							$product_price = ceil($product_price * 0.75 / 100) * 100;
+						} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
+							$product_price = $product_price * $discount_value;
+						}
+?>
+			<table cellpadding="2" cellspacing="0" style="width: 100%">
+				<tr>
+					<td style="width: 50%; text-align: center">
+<?						if ($product_price < $product_price_old) { ?>
+						<s style="color: #666666"><?= $product_price_old ?> р.</s><br>
+<? 						} ?>
+						<b><?= $product_price ?> р.</b>
+					</td>
+					<td style="width: 50%" align="right">
+						<a href="basket.php?action=add&amp;product_id=<?= $product_id ?>" style="margin-right: 35px"><img src="images/basket.gif" alt=" упить" title=" упить"/></a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center">
+						<?= $product_short_desc ?>
+					</td>
+				</tr>
+			</table>
+	
+<?
+					}
+					else
+					{
+?>
+			&nbsp;
+<?
+					}
+?>
+		</td>
+<?
+				}
+?>
+	</tr>
+<?
+			}
 		}
 ?>
 </table>

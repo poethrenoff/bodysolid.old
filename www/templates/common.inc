@@ -20,6 +20,8 @@
 		}
 	}
 
+	$image_base = 'http://bodysolid.ru';
+
 	$category_images = "/images/categories/";
 	$category_picture_default = 'default.gif';
 

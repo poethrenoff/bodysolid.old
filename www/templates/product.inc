@@ -52,7 +52,7 @@
 <table cellpadding="2" cellspacing="0" style="width: 100%">
 	<tr valign="top">
 		<td style="width: 160px; text-align: center">
-			<img src="<?= $product_preview_images.$product_picture ?>" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
+			<img src="<?= $image_base.$product_preview_images.$product_picture ?>" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
 			<table cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 10px">
 				<tr valign="middle">
 					<td style="width: 80%">
@@ -87,7 +87,7 @@
 		if ( $product_instruct && file_exists($_SERVER['DOCUMENT_ROOT'].$product_instructions.$product_instruct) ) 
 		{
 ?>
-			<p class="p"><b><a href="<?= $product_instructions.$product_instruct ?>">Скачать инструкцию</a></b></p>
+			<p class="p"><b><a href="<?= $image_base.$product_instructions.$product_instruct ?>">Скачать инструкцию</a></b></p>
 <?
 		}
 		
@@ -111,9 +111,9 @@
 			</div>
 			<div id="image" class="desc" style="display: none; text-align: center">
 <?		if ( $product_picture_big ) { ?>
-				<a href="picture.php?product_id=<?= $product_id ?>"><img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/></a>
+				<a href="picture.php?product_id=<?= $product_id ?>"><img src="<?= $image_base.$product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/></a>
 <?		} else { ?>
-				<img src="<?= $product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
+				<img src="<?= $image_base.$product_images.$product_picture ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>"/>
 <?		} ?>
 				<br/><br/>
 <?
@@ -136,9 +136,9 @@
 ?>
 		<div class="picture">
 <?		if ( $picture_name_big ) { ?>
-			<a href="picture.php?product_id=<?= $product_id ?>&amp;picture_id=<?= $picture_id ?>"><img src="<?= $product_additional_images.$picture_name ?>" alt="<?= $picture_title ?>"/></a>
+			<a href="picture.php?product_id=<?= $product_id ?>&amp;picture_id=<?= $picture_id ?>"><img src="<?= $image_base.$product_additional_images.$picture_name ?>" alt="<?= $picture_title ?>"/></a>
 <?		} else { ?>
-            <img src="<?= $product_additional_images.$picture_name ?>" alt="<?= $picture_title ?>"/>
+            <img src="<?= $image_base.$product_additional_images.$picture_name ?>" alt="<?= $picture_title ?>"/>
 <?		} ?>
     		<p class="c"><?= $picture_title ?></p>
 		</div>

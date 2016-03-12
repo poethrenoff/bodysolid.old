@@ -47,7 +47,7 @@
             $new_short_name = init_string('new_short_name',''); $new_short_name = norm_string($new_short_name); 
             $new_insert_name = init_string('new_insert_name',''); $new_insert_name = norm_string($new_insert_name); 
             $new_comment = init_string('new_comment',''); $new_comment = norm_string($new_comment);
-            $new_by_course = init_string('new_by_course') ? 1 : 0;
+            $new_by_course = init_string('new_by_course', '') ? 1 : 0;
             
             if ( !$new_name )
               $error = "Ќельз€ оставл€ть категорию без названи€!";

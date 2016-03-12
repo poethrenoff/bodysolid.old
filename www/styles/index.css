@@ -369,3 +369,42 @@ input.quantity {
 	color: #ffffff;
 	width: 30px;
 }
+
+span.require, span.error {
+    color: #a32c14;
+}
+
+#simplemodal-overlay {
+    background-color: #000;
+}
+#simplemodal-container {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 20px; 
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+}
+#simplemodal-container a.modalCloseImg {
+    background: url(/images/close.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -12px;
+    right: -13px;
+    cursor: pointer;
+}
+
+a.discount {
+	display: block;
+	position: absolute;
+	margin-top: 0px;
+	margin-left: 100px;
+	width: 150px;
+	height: 40px;
+	padding-top: 10px;
+}
+	a.discount img {
+		width: 100px;
+	}
+

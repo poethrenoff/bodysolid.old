@@ -55,9 +55,9 @@
 			<tr align="center">
 				<td>
 <?		if ( $picture_name_big ) { ?>
-					<img src="<?= $product_additional_big_images.$picture_name_big ?>" class="product" alt="<?= $picture_title ?>" title="<?= $picture_title ?>" style="margin-top: 50px"/>
+					<img src="<?= $image_base.$product_additional_big_images.$picture_name_big ?>" class="product" alt="<?= $picture_title ?>" title="<?= $picture_title ?>" style="margin-top: 50px"/>
 <?		} else if ( $product_picture_big ) { ?>
-					<img src="<?= $product_big_images.$product_picture_big ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>" style="margin-top: 50px"/>
+					<img src="<?= $image_base.$product_big_images.$product_picture_big ?>" class="product" alt="<?= $product_name ?>" title="<?= $product_name ?>" style="margin-top: 50px"/>
 <?		} ?>
 				</td>
 			</tr>

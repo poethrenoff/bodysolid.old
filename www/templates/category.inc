@@ -61,7 +61,7 @@
 			while ( $row = mysql_fetch_array($products_sql) )
 				$products_rows[] = $row;
 			
-			PrintProducts($products_rows, $categories_row);
+			PrintProducts($products_rows, $categories_row, true, $categories_row['group_id'] == 5);
 		}
 	}
 ?>
