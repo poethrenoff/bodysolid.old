@@ -7,6 +7,7 @@
 	{
 		$product_name = $products_row['product_name'];
 		$product_price = $products_row['product_price'];
+		$product_discount = $products_row['product_discount'];
 		$product_short_desc = $products_row['product_short_desc'];
 		$product_full_desc = $products_row['product_full_desc'];
 		$product_video = $products_row['product_video'];
@@ -33,6 +34,8 @@
 		$product_price = $product_price_old = round($category_by_course ? $product_price * $course : $product_price);
 		if ($products_row['brand_id'] == 2) {
 			$product_price = ceil($product_price * 0.75 / 100) * 100;
+		} elseif ( $product_discount ) {
+			$product_price = ceil($product_price * (100 - $product_discount) / 100 / 100) * 100;
 		} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
 			$product_price = $product_price * $discount_value;
 		}

@@ -47,6 +47,10 @@
 							'BodySolid силовые тренажеры, профессиональные тренажеры, свободные веса Body Solid, блочные силовые тренажеры, беговые дорожки, велотренажеры, эллиптические тренажеры',
 							'Самая полная информация о тренажерах BodySolid: силовые тренажеры, профессиональные тренажеры, свободные веса Body Solid, блочные силовые тренажеры, беговые дорожки, велотренажеры, эллиптические тренажеры');
 
+	if (rand(0, 10) == 0) {
+		updateCourse();
+	}
+
 	function init_string($varname, $vardef)
 	{
 		if ( isset($_REQUEST[$varname]) ) 
@@ -138,5 +142,20 @@
 		{
 			return $default_value;
 		}
+	}
+	
+	function updateCourse()
+	{
+		$exchange_xml = simplexml_load_file( 'http://www.cbr.ru/scripts/XML_daily.asp' );
+		if ( !$exchange_xml ) exit;
+		
+		$dollar_xml = $exchange_xml -> xpath( 'Valute[CharCode="USD"]' );
+		if ( !$dollar_xml ) exit;
+		
+		$value = ( string ) $dollar_xml[0] -> Value;
+		$value = str_replace( ',', '.', $value );
+		
+		if ( is_numeric( $value ) )
+			mysql_query("update preferences set preference_value = {$value} where preference_name = 'course'");
 	}
 ?>

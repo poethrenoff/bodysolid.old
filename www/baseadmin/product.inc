@@ -79,7 +79,8 @@
               $error = "Нельзя оставлять товар без бренда!";
             else
             {
-              $new_price = init_float('new_price', -1);
+                $new_price = init_float('new_price', -1);
+                $new_discount = init_float('new_discount',-1);
 
                 $new_short_desc = init_string('new_short_desc',''); $new_short_desc = norm_string($new_short_desc);
                 $new_full_desc = init_string('new_full_desc',''); $new_full_desc = norm_html($new_full_desc);
@@ -94,6 +95,7 @@
 	          	                                       category_id = '$new_category',
 	          	                                       brand_id = '$new_brand',
 	          	                                       product_price = '$new_price',
+	          	                                       product_discount = '$new_discount',
 	                                                   product_short_desc = '$new_short_desc',
 	                                                   product_full_desc = '$new_full_desc',
 	                                                   product_video = '$new_video',
@@ -103,7 +105,7 @@
 	              }
 	              else
     	          {
-	                  mysql_query("insert into products (product_name, category_id, brand_id, product_price, product_picture, product_picture_big,
+	                  mysql_query("insert into products (product_name, category_id, brand_id, product_price, product_discount, product_picture, product_picture_big,
 	                  	  								 product_short_desc, product_full_desc, product_video, product_search, product_addon)
 	                                             values ('$new_name', '$new_category', '$new_brand', '$new_price', '', '',
 	                  									 '$new_short_desc', '$new_full_desc', '$new_video', '$new_search', '$new_addon')");
@@ -180,6 +182,7 @@
 	            $category_id = $product['category_id'];
 	            $brand_id = $product['brand_id'];
 	            $product_price = (float) $product['product_price'];
+	            $product_discount = (float) $product['product_discount'];
 	            $product_short_desc = $product['product_short_desc'];
 	            $product_full_desc = htmlspecialchars( $product['product_full_desc'], ENT_QUOTES, 'Windows-1251' );
 	            $product_video = htmlspecialchars( $product['product_video'], ENT_QUOTES, 'Windows-1251' );
@@ -190,7 +193,7 @@
 	        }
 	        else
 	        {
-	            $product_id = $brand_id = $category_id = $product_price = 0;
+	            $product_id = $brand_id = $category_id = $product_price = $product_discount = 0;
 	            $product_name = $product_short_desc = $product_full_desc = $product_video = $product_picture = $product_picture_big = $product_instruct = $product_addon = '';
 	        }
 	        
@@ -313,6 +316,14 @@
           </td>
           <td valign="top" colspan="2">
             <p><input type="text" class="text" name="new_price" style="width: 100px; text-align: right" value="<?= $product_price ?>"/></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <p>Скидка (%)</p>
+          </td>
+          <td valign="top" colspan="2">
+            <p><input type="text" class="text" name="new_discount" style="width: 100px; text-align: right" value="<?= $product_discount ?>"/></p>
           </td>
         </tr>
         <tr>
