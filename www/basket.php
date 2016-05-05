@@ -68,7 +68,7 @@
 			  	$product_discount = $order_items_row['product_discount'];
 			  	$product_price = round($category_by_course ? $product_price * $course : $product_price);
 				if ($order_items_row['brand_id'] == 2) {
-					$product_price = ceil($product_price * 0.75 / 100) * 100;
+					$product_price = ceil($product_price * 0.8 / 100) * 100;
 				} elseif ( $product_discount ) {
 					$product_price = ceil($product_price * (100 - $product_discount) / 100 / 100) * 100;
 				} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
@@ -187,7 +187,7 @@
 		  	$product_discount = $products_row['product_discount'];
 			$product_price = round($category_by_course ? $product_price * $course : $product_price);
 			if ($products_row['brand_id'] == 2) {
-				$product_price = ceil($product_price * 0.75 / 100) * 100;
+				$product_price = ceil($product_price * 0.8 / 100) * 100;
 			} elseif ( $product_discount ) {
 				$product_price = ceil($product_price * (100 - $product_discount) / 100 / 100) * 100;
 			} elseif ( !$product_no_discount && $product_price > $discount_limit ) {
