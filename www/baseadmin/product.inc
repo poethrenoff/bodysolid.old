@@ -107,7 +107,7 @@
     	          {
 	                  mysql_query("insert into products (product_name, category_id, brand_id, product_price, product_discount, product_picture, product_picture_big,
 	                  	  								 product_short_desc, product_full_desc, product_video, product_search, product_addon)
-	                                             values ('$new_name', '$new_category', '$new_brand', '$new_price', '', '',
+	                                             values ('$new_name', '$new_category', '$new_brand', '$new_price', '', '', '',
 	                  									 '$new_short_desc', '$new_full_desc', '$new_video', '$new_search', '$new_addon')");
     	              $id = mysql_insert_id();
 
