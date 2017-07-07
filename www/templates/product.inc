@@ -42,7 +42,7 @@
 ?>
 <p class="path"><a class="path" href="?tab=group&amp;group_id=<?= $group_id ?>"><?= $group_name ?></a> - <a class="path" href="?tab=category&amp;category_id=<?= $category_id ?>"><?= $category_name ?></a> - <?= $product_name ?></p>
 
-<h1><?= $product_name ?></h1>
+<h1><?= $product_name ?><? if ($product_discount > 0) { ?> - скидка <?= round($product_discount) ?>%<? } ?></h1>
 
 <script type="text/javascript">
 	function toggle_desc(id) {
