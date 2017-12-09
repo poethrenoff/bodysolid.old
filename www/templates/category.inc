@@ -4,7 +4,7 @@
 	$category_id = init_integer('category_id', 0);
 	$product_order = init_string('product_order', 'date');
 	
-	$categories_sql = mysql_query("select * from categories where category_id = '$category_id'");
+	$categories_sql = mysql_query("select * from categories where category_id = '$category_id' and category_active = 1");
 
 	if ( $categories_row = mysql_fetch_array($categories_sql) )
 	{
